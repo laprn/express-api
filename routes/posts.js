@@ -1,4 +1,5 @@
 const express = require('express');
+const { rawListeners } = require('../models/post');
 const router = express.Router();
 const Post = require('../models/post');
 
@@ -24,4 +25,25 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:postId', async (req, res) => {
+    try{
+        const post = await Post.findById(req.params.postId);
+        res.json(post);
+    }catch(err){
+        res.json({message: err});
+    }
+});
+
+router.patch('/:postId', async (req, res) => {
+    try{
+        const updatePost = await Post.updateOne(
+            { _id: req.params.postId},
+            { $set: {title: req.body.title}}
+        );
+        res.json(updatePost);
+    }catch(err){
+        res.json({message: err});
+    }
+    
+})
 module.exports = router;
