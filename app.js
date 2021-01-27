@@ -14,9 +14,9 @@ app.get('/', (req, res) => {
     res.send('Hello express');
 });
 
-// mongoose.connect(
-//     process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
-//     console.log('connected to DB!')
-// });
+mongoose.connect(
+    process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
+    console.log('connected to DB!')
+});
 
 app.listen(process.env.PORT || 3000);
