@@ -11,7 +11,7 @@ const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
 app.get('/', (req, res) => {
-    res.send('Hello express');
+    res.sendFile(__dirname + 'public/index.html');
 });
 
 mongoose.connect(
